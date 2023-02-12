@@ -9,14 +9,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import WebDriverException
 
 class IniciarWhatsapp:
-    #Variable para retorna la respuesta de GPT-3
-    rta_gpt = ""
-    #Variable para saber si WhastApp Web esta en la pantalla de inicio
-    pantalla_inicio = False
-
     #Leer API Key ChatGPT
     config = configparser.ConfigParser()
     config.read('config/env.ini')
@@ -39,26 +33,31 @@ class IniciarWhatsapp:
     #Tiempo de espera para la respuesta de GPT-3
     tiempo_de_espera = config.get('env2', 'tiempo_espera')
 
-    #Leer e iniciar las etiquetas de whatsapp web guardadas en el txt
-    config_dict = dict()
-    with open('config/config.txt', 'r') as file:
-        for linea in file:
-            linea = linea.strip()
-            linea_split = linea.split('<e>')
-            config_dict[linea_split[0]] = linea_split[1]
-
-    msjes_nuevos_class_name = config_dict[class_name1]
-    conversacion_class_name = config_dict[class_name2]
-    input_box_path = config_dict[xpath1]
-    not_spam_btn_path = config_dict[xpath2]
-
-    linux_cache = config_dict[linux_chrome]
-    mac_cache = config_dict[mac_chrome]
-    windows_cache = config_dict[windows_chrome]
-
-    tiempo_espera = config_dict[tiempo_de_espera]
-
     def __init__(self):
+        #Variable para retorna la respuesta de GPT-3
+        self.rta_gpt = ""
+        #Variable para saber si WhastApp Web esta en la pantalla de inicio
+        self.pantalla_inicio = False
+
+        #Leer e iniciar las etiquetas de whatsapp web guardadas en el txt
+        config_dict = dict()
+        with open('config/config.txt', 'r') as file:
+            for linea in file:
+                linea = linea.strip()
+                linea_split = linea.split('<e>')
+                config_dict[linea_split[0]] = linea_split[1]
+
+        self.msjes_nuevos_class_name = config_dict[self.class_name1]
+        self.conversacion_class_name = config_dict[self.class_name2]
+        self.input_box_path = config_dict[self.xpath1]
+        self.not_spam_btn_path = config_dict[self.xpath2]
+
+        self.linux_cache = config_dict[self.linux_chrome]
+        self.mac_cache = config_dict[self.mac_chrome]
+        self.windows_cache = config_dict[self.windows_chrome]
+
+        self.tiempo_espera = config_dict[self.tiempo_de_espera]
+        
         #Abrir WhatsApp
         sistema_operativo = platform.system()
         options=webdriver.ChromeOptions()
@@ -94,7 +93,7 @@ class IniciarWhatsapp:
 
         
         self.driver.get("https://web.whatsapp.com/")
-        self.wait_inicio=WebDriverWait(self.driver,20)
+        self.wait_inicio=WebDriverWait(self.driver,25)
         self.wait_mensajes=WebDriverWait(self.driver,90)
         self.wait_fast=WebDriverWait(self.driver,1)
 

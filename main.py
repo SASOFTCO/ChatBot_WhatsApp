@@ -3,7 +3,7 @@ import configparser
 from time import sleep
 
 from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication, QMessageBox
+from PyQt5.QtWidgets import QApplication, QMessageBox, QDesktopWidget
 from PyQt5.QtCore import QThread, pyqtSignal, Qt
 
 from src.bot import IniciarWhatsapp
@@ -40,6 +40,7 @@ class iniciar_ui:
 	btn_config = ui_ppal.configBtn
 	btn_iniciar = ui_ppal.iniciarBtn
 	btn_parar = ui_ppal.pararBtn
+	btn_minimizar = ui_ppal.minimizarBtn
 	btn_salir = ui_ppal.salirBtn
 
 	#Elementos ui de configuración
@@ -49,6 +50,7 @@ class iniciar_ui:
 	btn_saveConfig0 = ui_config.saveConfigBtn
 	btn_volver0 = ui_config.volverBtn 
 	btn_reset0 = ui_config.resetBtn
+	btn_minimizar0 = ui_config.minimizarBtn
 	btn_salir0 = ui_config.salirBtn
 
 	#Elementos ui de configuración - Selenium
@@ -59,6 +61,7 @@ class iniciar_ui:
 	btn_saveConfig1 = ui_config_selenium.saveConfigBtn
 	btn_volver1 = ui_config_selenium.volverBtn
 	btn_reset1 = ui_config_selenium.resetBtn
+	btn_minimizar1 = ui_config_selenium.minimizarBtn
 	btn_salir1 = ui_config_selenium.salirBtn
 
 	#Elementos ui de configuración - Chrome
@@ -68,6 +71,7 @@ class iniciar_ui:
 	btn_saveConfig2 = ui_config_chrome.saveConfigBtn
 	btn_volver2 = ui_config_chrome.volverBtn
 	btn_reset2 = ui_config_chrome.resetBtn
+	btn_minimizar2 = ui_config_chrome.minimizarBtn
 	btn_salir2 = ui_config_chrome.salirBtn
 
 	#Variables de entorno
@@ -100,6 +104,7 @@ class iniciar_ui:
 		self.btn_iniciar.clicked.connect(self.iniciar_function)
 		self.btn_parar.clicked.connect(self.parar_hilo_function)
 		self.btn_config.clicked.connect(self.config_function)
+		self.btn_minimizar.clicked.connect(self.ui_ppal.showMinimized)
 		self.btn_salir.clicked.connect(self.salir_function)
 
 		#Controladores ui de configuración
@@ -108,23 +113,57 @@ class iniciar_ui:
 		self.btn_saveConfig0.clicked.connect(self.saveConfig0_function)
 		self.btn_volver0.clicked.connect(self.volver0_function)
 		self.btn_reset0.clicked.connect(self.set_config_param)
+		self.btn_minimizar0.clicked.connect(self.ui_config.showMinimized)
 		self.btn_salir0.clicked.connect(self.salir_function)
 
 		#Controladores ui de configuración - Selenium
 		self.btn_saveConfig1.clicked.connect(self.saveConfig1_function)
 		self.btn_volver1.clicked.connect(self.volver1_function)
 		self.btn_reset1.clicked.connect(self.set_selenium_config)
+		self.btn_minimizar1.clicked.connect(self.ui_config_selenium.showMinimized)
 		self.btn_salir1.clicked.connect(self.salir_function)
 
 		#Controladores ui de configuración - Chrome
 		self.btn_saveConfig2.clicked.connect(self.saveConfig2_function)
 		self.btn_volver2.clicked.connect(self.volver2_function)
 		self.btn_reset2.clicked.connect(self.set_chrome_config)
+		self.btn_minimizar2.clicked.connect(self.ui_config_chrome.showMinimized)
 		self.btn_salir2.clicked.connect(self.salir_function)
 
+		#Iniciar con el botón "PARAR" deshabilitado
 		self.btn_parar.setEnabled(False)
+		# Obtener el tamaño de la pantalla
+		screen = QDesktopWidget().screenGeometry()
+		# Obtener el tamaño de la ventana
+		size = self.ui_ppal.geometry()
+		# Calcular la posición para centrado en la pantalla
+		x = int((screen.width() - size.width()) / 2)
+		y = int((screen.height() - size.height()) / 2)
+		# Mover la ventana a la posición calculada
+		self.ui_ppal.move(x, y)
 		self.ui_ppal.show()
 		self.app.exec()
+
+
+	#Funciones Generales
+	def salir_function(self):
+		self.btn_salir.setEnabled(False)
+		try:
+			# Enviar la señal para detener el hilo
+			self.thread.buscar_msjes = False
+			self.thread.wait()
+			print("Thread cerrado correctamente")
+		except:
+			print("No hay Threads abiertos")
+		print("Finalizando")
+		sys.exit()
+
+	def handle_finished(self):
+		# Manejar señal de terminación del hilo
+		print("Tarea terminada")
+		self.btn_parar.setEnabled(False)
+		self.btn_iniciar.setEnabled(True)
+
 	
 	#Funciones UI Principal
 	def iniciar_function(self):
@@ -140,24 +179,6 @@ class iniciar_ui:
 		print("Finalizar hilo")
 		self.thread.buscar_msjes = False
 
-	def handle_finished(self):
-		# Manejar señal de terminación del hilo
-		print("Tarea terminada")
-		self.btn_parar.setEnabled(False)
-		self.btn_iniciar.setEnabled(True)
-
-	def salir_function(self):
-		self.btn_salir.setEnabled(False)
-		try:
-			# Enviar la señal para detener el hilo
-			self.thread.buscar_msjes = False
-			self.thread.wait()
-			print("Thread cerrado correctamente")
-		except:
-			print("No hay Threads abiertos")
-		print("Finalizando")
-		sys.exit()
-
 	def config_function(self):
 		print("Configuración")
 		self.pos_ventana = self.ui_ppal.pos()
@@ -165,6 +186,7 @@ class iniciar_ui:
 		self.ui_config.move(self.pos_ventana)
 		self.set_config_param()
 		self.ui_config.show()
+
 
 	#Funciones UI Configuración
 	def set_config_param(self):

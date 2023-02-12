@@ -29,7 +29,7 @@
    <bool>false</bool>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>ChatBot v.1.0</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(16, 57,4 0);</string>
@@ -234,7 +234,7 @@ QPushButton:disabled {
      <string notr="true">color: rgb(67, 205, 102);</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt; WHATSAPP - CHAT GPT&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;WHATSAPP &amp;amp; GPT-3&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="salirBtn">
@@ -419,7 +419,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="volverBtn">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>40</x>
       <y>20</y>
       <width>71</width>
       <height>41</height>
@@ -488,6 +488,58 @@ QPushButton:pressed {
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="minimizarBtn">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>30</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>28</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    color: rgb(127,0,0);
+    border: 2px solid #555;
+    border-radius: 20px;
+    border-style: outset;
+    background: qradialgradient(
+        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+        radius: 1.35, stop: 0 #48dc6e, stop: 1 #39ae57
+        );
+    padding: 5px;
+    }
+
+QPushButton:hover {
+    background: qradialgradient(
+        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+        radius: 1.35, stop: 0 #48dc6e, stop: 1 #50f379
+        );
+    }
+
+QPushButton:pressed {
+    border-style: inset;
+    background: qradialgradient(
+        cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
+        radius: 1.35, stop: 0 #48dc6e, stop: 1 #ddd
+        );
+    }
+QPushButton:disabled {
+    background-color: #6a737c;
+    color: #333;
+	}</string>
+    </property>
+    <property name="text">
+     <string>-</string>
     </property>
    </widget>
   </widget>
