@@ -15,6 +15,8 @@ class start_program(QThread):
 
 	def run(self):
 		iniciar_bot = IniciarWhatsapp()
+		if iniciar_bot.pantalla_inicio:
+			self.buscar_msjes = False
 
 		# Código que se ejecutará en un hilo separado
 		while self.buscar_msjes:
@@ -137,12 +139,12 @@ class iniciar_ui:
 	def parar_hilo_function(self):
 		print("Finalizar hilo")
 		self.thread.buscar_msjes = False
-		self.btn_parar.setEnabled(False)
-		self.btn_iniciar.setEnabled(True)
 
 	def handle_finished(self):
 		# Manejar señal de terminación del hilo
 		print("Tarea terminada")
+		self.btn_parar.setEnabled(False)
+		self.btn_iniciar.setEnabled(True)
 
 	def salir_function(self):
 		self.btn_salir.setEnabled(False)

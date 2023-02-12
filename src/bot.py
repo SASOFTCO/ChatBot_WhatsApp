@@ -14,6 +14,8 @@ from selenium.common.exceptions import WebDriverException
 class IniciarWhatsapp:
     #Variable para retorna la respuesta de GPT-3
     rta_gpt = ""
+    #Variable para saber si WhastApp Web esta en la pantalla de inicio
+    pantalla_inicio = False
 
     #Leer API Key ChatGPT
     config = configparser.ConfigParser()
@@ -92,13 +94,17 @@ class IniciarWhatsapp:
 
         
         self.driver.get("https://web.whatsapp.com/")
-        self.wait=WebDriverWait(self.driver,100)
-        self.wait2=WebDriverWait(self.driver,1)
+        self.wait_inicio=WebDriverWait(self.driver,20)
+        self.wait_mensajes=WebDriverWait(self.driver,90)
+        self.wait_fast=WebDriverWait(self.driver,1)
 
-        #Esperar que carguen los mensajes y hacer clkic en el primero
-        mensajes_nuevos = self.wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, self.msjes_nuevos_class_name)))
-        mensajes_nuevos[0].click()
-        sleep(.5)
+        try:
+            #Esperar que carguen los mensajes y hacer clkic en el primero
+            mensajes_nuevos = self.wait_inicio.until(EC.presence_of_all_elements_located((By.CLASS_NAME, self.msjes_nuevos_class_name)))
+            mensajes_nuevos[0].click()
+            sleep(.5)
+        except:
+            self.pantalla_inicio = True
         
 
     def obtener_respuesta(self, mensaje):
@@ -127,7 +133,7 @@ class IniciarWhatsapp:
     def respuesta_chatgpt(self, mensaje):
         hilo = threading.Thread(target=self.obtener_respuesta, args=(mensaje,))
         hilo.start()
-        hilo.join(timeout=self.tiempo_espera)
+        hilo.join(timeout=int(self.tiempo_espera))
         if hilo.is_alive():
             respuesta = 'Lo sentimos, no se pudo obtener una respuesta en el tiempo establecido.'
         else:
@@ -141,46 +147,52 @@ class IniciarWhatsapp:
     def procesar_mensaje(self):
         #Acción para dar click en el botón "OK" de una conversación nueva
         try:
-            not_spam_btn = self.wait2.until(EC.presence_of_element_located((By.XPATH,self.not_spam_btn_path)))
+            not_spam_btn = self.wait_fast.until(EC.presence_of_element_located((By.XPATH,self.not_spam_btn_path)))
             not_spam_btn.click()
             sleep(.5)
             print("Nueva conversación")
         except:
             print("Conversación existente")
 
-        # Esperar a que se carguen los mensajes
-        conversacion = self.wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, self.conversacion_class_name)))
-        # Obtener el último mensaje de la conversación
-        msj_actual = conversacion[-1].text
-        # Utilizando splitlines() para eliminar la hora del mensaje
-        msj_actual = msj_actual.splitlines()[:-1]
-        msj_actual = "\n".join(msj_actual)
-        print(f"Mensaje actual: {msj_actual}")
-        
-        #Respuesta de Chat GPT
-        rta_chatgpt = self.respuesta_chatgpt(msj_actual)
-        print(f"Esta es la respuesta devuelta de chatGPT: {rta_chatgpt}")
-        
-        #Enviar respuesta
-        input_box = self.wait2.until(EC.presence_of_element_located((By.XPATH,self.input_box_path)))
-        input_box.send_keys(rta_chatgpt)
-        input_box.send_keys(Keys.RETURN)
-        mensajes_nuevos = self.wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, self.msjes_nuevos_class_name)))
-        mensajes_nuevos[0].click()
+        try:
+            # Esperar a que se carguen los mensajes
+            conversacion = self.wait_mensajes.until(EC.presence_of_all_elements_located((By.CLASS_NAME, self.conversacion_class_name)))
+            # Obtener el último mensaje de la conversación
+            msj_actual = conversacion[-1].text
+            # Utilizando splitlines() para eliminar la hora del mensaje
+            msj_actual = msj_actual.splitlines()[:-1]
+            msj_actual = "\n".join(msj_actual)
+            print(f"Mensaje actual: {msj_actual}")
+            
+            #Respuesta de Chat GPT
+            rta_chatgpt = self.respuesta_chatgpt(msj_actual)
+            print(f"Esta es la respuesta devuelta de chatGPT: {rta_chatgpt}")
+            
+            #Enviar respuesta
+            input_box = self.wait_fast.until(EC.presence_of_element_located((By.XPATH,self.input_box_path)))
+            input_box.send_keys(rta_chatgpt)
+            input_box.send_keys(Keys.RETURN)
+            mensajes_nuevos = self.wait_mensajes.until(EC.presence_of_all_elements_located((By.CLASS_NAME, self.msjes_nuevos_class_name)))
+            mensajes_nuevos[0].click()
+        except:
+            print("No cargaron los mensajes de la conversación")
 
 
     #Buscar nuevos mensajes
     def buscar_nuevo_mensaje(self):
-        mensajes_nuevos = self.wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, self.msjes_nuevos_class_name)))
+        try:
+            mensajes_nuevos = self.wait_mensajes.until(EC.presence_of_all_elements_located((By.CLASS_NAME, self.msjes_nuevos_class_name)))
         
-        if len(mensajes_nuevos) > 1:
-            mensajes_nuevos.pop(0)
-            for mensaje in mensajes_nuevos:
-                #print(f"Mensajes no leidos de esta conversación: {mensaje.text}")
-                mensaje.click()
-                sleep(1)
-                self.procesar_mensaje()
+            if len(mensajes_nuevos) > 1:
+                mensajes_nuevos.pop(0)
+                for mensaje in mensajes_nuevos:
+                    #print(f"Mensajes no leidos de esta conversación: {mensaje.text}")
+                    mensaje.click()
+                    # sleep(1)
+                    self.procesar_mensaje()
 
-        else:
-            mensajes_nuevos[0].click()
-            print('No hay mensajes nuevos')
+            else:
+                mensajes_nuevos[0].click()
+                print('No hay mensajes nuevos')
+        except:
+            print("No cargó la lista de mensajes")
