@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="mouseTracking">
+   <bool>false</bool>
+  </property>
+  <property name="tabletTracking">
+   <bool>false</bool>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(16, 57,4 0);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>30</y>
+      <width>441</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67, 205, 102);
+border-radius: 21px;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="configLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>0</y>
+       <width>411</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>41</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Configuración</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="seleniumBtn">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>290</y>
+      <width>541</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>541</width>
+      <height>51</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>541</width>
+      <height>51</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    color: #333;
+    border: 2px solid #555;
+    border-radius: 20px;
+    border-style: outset;
+    background: qradialgradient(
+        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+        radius: 1.35, stop: 0 #48dc6e, stop: 1 #39ae57
+        );
+    padding: 5px;
+    }
+
+QPushButton:hover {
+    background: qradialgradient(
+        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+        radius: 1.35, stop: 0 #48dc6e, stop: 1 #50f379
+        );
+    }
+
+QPushButton:pressed {
+    border-style: inset;
+    background: qradialgradient(
+        cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
+        radius: 1.35, stop: 0 #48dc6e, stop: 1 #ddd
+        );
+    }
+QPushButton:disabled {
+    background-color: #6a737c;
+    color: #333;
+	}</string>
+    </property>
+    <property name="text">
+     <string>Selenium (Class Name - xPath)</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="chromeBtn">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>380</y>
+      <width>541</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>541</width>
+      <height>51</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>541</width>
+      <height>51</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    color: #333;
+    border: 2px solid #555;
+    border-radius: 20px;
+    border-style: outset;
+    background: qradialgradient(
+        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+        radius: 1.35, stop: 0 #48dc6e, stop: 1 #39ae57
+        );
+    padding: 5px;
+    }
+
+QPushButton:hover {
+    background: qradialgradient(
+        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+        radius: 1.35, stop: 0 #48dc6e, stop: 1 #50f379
+        );
+    }
+
+QPushButton:pressed {
+    border-style: inset;
+    background: qradialgradient(
+        cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
+        radius: 1.35, stop: 0 #48dc6e, stop: 1 #ddd
+        );
+    }
+QPushButton:disabled {
+    background-color: #6a737c;
+    color: #333;
+	}</string>
+    </property>
+    <property name="text">
+     <string>Local browser cache path</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="titleLabel">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>140</y>
+      <width>321</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>19</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <underline>false</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(67, 205, 102);</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt; WHATSAPP - CHAT GPT&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="salirBtn">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>30</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>21</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    color: rgb(127,0,0);
+    border: 2px solid #555;
+    border-radius: 20px;
+    border-style: outset;
+    background: qradialgradient(
+        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+        radius: 1.35, stop: 0 #48dc6e, stop: 1 #39ae57
+        );
+    padding: 5px;
+    }
+
+QPushButton:hover {
+    background: qradialgradient(
+        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+        radius: 1.35, stop: 0 #48dc6e, stop: 1 #50f379
+        );
+    }
+
+QPushButton:pressed {
+    border-style: inset;
+    background: qradialgradient(
+        cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
+        radius: 1.35, stop: 0 #48dc6e, stop: 1 #ddd
+        );
+    }
+QPushButton:disabled {
+    background-color: #6a737c;
+    color: #333;
+	}</string>
+    </property>
+    <property name="text">
+     <string>X</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="tiempoEsperaLabel">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>470</y>
+      <width>141</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+	background-color: rgb(67, 205, 102);
+	border-radius: 10px;
+	min-height: 20px;
+	min-width: 20px;
+}</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Tiempo de&lt;br/&gt;espera (seg)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="saveConfigBtn">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>480</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    color: #333;
+    border: 2px solid #555;
+    border-radius: 20px;
+    border-style: outset;
+    background: qradialgradient(
+        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+        radius: 1.35, stop: 0 #CCAD50, stop: 1 #C29611
+        );
+    padding: 5px;
+    }
+
+QPushButton:hover {
+    background: qradialgradient(
+        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+        radius: 1.35, stop: 0 #CCAD50, stop: 1 #FAD461
+        );
+    }
+
+QPushButton:pressed {
+    border-style: inset;
+    background: qradialgradient(
+        cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
+        radius: 1.35, stop: 0 #CCAD50, stop: 1 #ddd
+        );
+    }</string>
+    </property>
+    <property name="text">
+     <string>GUARDAR</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="resetBtn">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>480</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    color: #333;
+    border: 2px solid #555;
+    border-radius: 20px;
+    border-style: outset;
+    background: qradialgradient(
+        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+        radius: 1.35, stop: 0 #fff, stop: 1 #888
+        );
+    padding: 5px;
+    }
+
+QPushButton:hover {
+    background: qradialgradient(
+        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+        radius: 1.35, stop: 0 #fff, stop: 1 #bbb
+        );
+    }
+
+QPushButton:pressed {
+    border-style: inset;
+    background: qradialgradient(
+        cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
+        radius: 1.35, stop: 0 #fff, stop: 1 #ddd
+        );
+    }</string>
+    </property>
+    <property name="text">
+     <string>RESET</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="volverBtn">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>20</y>
+      <width>71</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    color: rgb(127,0,0);
+    border: 2px solid #555;
+    border-radius: 20px;
+    border-style: outset;
+    background: qradialgradient(
+        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+        radius: 1.35, stop: 0 #48dc6e, stop: 1 #39ae57
+        );
+    padding: 5px;
+    }
+
+QPushButton:hover {
+    background: qradialgradient(
+        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+        radius: 1.35, stop: 0 #48dc6e, stop: 1 #50f379
+        );
+    }
+
+QPushButton:pressed {
+    border-style: inset;
+    background: qradialgradient(
+        cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
+        radius: 1.35, stop: 0 #48dc6e, stop: 1 #ddd
+        );
+    }</string>
+    </property>
+    <property name="text">
+     <string>Volver</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="tEsperaInput">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>480</y>
+      <width>61</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="wrapping">
+     <bool>false</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

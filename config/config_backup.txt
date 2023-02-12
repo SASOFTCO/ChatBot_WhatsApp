@@ -1,0 +1,8 @@
+msjes_nuevos_class_name:_1pJ9J
+conversacion_class_name:_1-FMR
+input_box_path://*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]
+not_spam_btn_path://*[@id="main"]/footer/div[2]/div/div[2]/div/div/div[2]/div[3]/div
+linux_chrome_path<e>/home/<USUARIO>/.cache/google-chrome/Default/Cache/
+mac_chrome_path<e>/Users/<USUARIO>/Library/Caches/Google/Chrome/
+windows_chrome_path<e>C:/Users/<USUARIO>/AppData/Local/Google/Chrome/User Data/Default
+tiempo_espera<e>15
