@@ -30,8 +30,10 @@ class IniciarWhatsapp:
     linux_chrome = config.get('env2', 'linux_chrome')
     mac_chrome = config.get('env2', 'mac_chrome')
     windows_chrome = config.get('env2', 'windows_chrome')
-    #Tiempo de espera para la respuesta de GPT-3
-    tiempo_de_espera = config.get('env2', 'tiempo_espera')
+    #Tiempos de espera
+    te_rta_gpt = config.get('env3', 't_e_rta_gpt')
+    te_init_whats = config.get('env3', 't_e_init_whats')
+    te_msg = config.get('env3', 't_e_msg')
 
     def __init__(self):
         #Variable para retorna la respuesta de GPT-3
@@ -56,7 +58,9 @@ class IniciarWhatsapp:
         self.mac_cache = config_dict[self.mac_chrome]
         self.windows_cache = config_dict[self.windows_chrome]
 
-        self.tiempo_espera = config_dict[self.tiempo_de_espera]
+        self.t_e_rta_gpt = int(config_dict[self.te_rta_gpt])
+        self.t_e_init_whats = int(config_dict[self.te_init_whats])
+        self.t_e_msg = int(config_dict[self.te_msg])
         
         #Abrir WhatsApp
         sistema_operativo = platform.system()
@@ -93,8 +97,8 @@ class IniciarWhatsapp:
 
         
         self.driver.get("https://web.whatsapp.com/")
-        self.wait_inicio=WebDriverWait(self.driver,25)
-        self.wait_mensajes=WebDriverWait(self.driver,90)
+        self.wait_inicio=WebDriverWait(self.driver,self.t_e_init_whats)
+        self.wait_mensajes=WebDriverWait(self.driver,self.t_e_msg)
         self.wait_fast=WebDriverWait(self.driver,1)
 
         try:
@@ -132,7 +136,7 @@ class IniciarWhatsapp:
     def respuesta_chatgpt(self, mensaje):
         hilo = threading.Thread(target=self.obtener_respuesta, args=(mensaje,))
         hilo.start()
-        hilo.join(timeout=int(self.tiempo_espera))
+        hilo.join(timeout=self.t_e_rta_gpt)
         if hilo.is_alive():
             respuesta = 'Lo sentimos, no se pudo obtener una respuesta en el tiempo establecido.'
         else:
