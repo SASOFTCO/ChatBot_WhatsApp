@@ -1,5 +1,7 @@
+import webbrowser
+
 from PyQt5 import uic
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QMainWindow, QMessageBox
 from PyQt5.QtCore import Qt
 
 from src.ui_config_selenium import Config_Selenium_UI
@@ -21,6 +23,9 @@ class Configurar_UI(QMainWindow):
         self.ui_config.setWindowFlags(Qt.Window | Qt.CustomizeWindowHint | Qt.WindowTitleHint)
 
         #Elementos ui de configuración
+        self.user_guide_pdf = self.ui_config.userGuide
+        self.code_guide = self.ui_config.codeGuide
+        self.info_soft = self.ui_config.infoSoft
         self.btn_selenium = self.ui_config.seleniumBtn
         self.btn_chrome = self.ui_config.chromeBtn
         self.btn_tiempos = self.ui_config.tiemposBtn
@@ -29,6 +34,9 @@ class Configurar_UI(QMainWindow):
         self.btn_salir = self.ui_config.salirBtn
 
         #Controladores ui de configuración
+        self.user_guide_pdf.mousePressEvent = self.abrir_manual_usuario
+        self.code_guide.mousePressEvent = self.abrir_doc_code
+        self.info_soft.mousePressEvent = self.info_soft_function
         self.btn_selenium.clicked.connect(self.selenium_function)
         self.btn_chrome.clicked.connect(self.chrome_function)
         self.btn_tiempos.clicked.connect(self.tiempos_function)
@@ -38,6 +46,33 @@ class Configurar_UI(QMainWindow):
 
 
 	#Funciones UI Configuración
+    def abrir_manual_usuario(self, event):
+        print("Abrir el manual de usuario")
+        filename = "docs/Manual_Usuario.pdf"
+        webbrowser.open(filename, new = 2)
+
+    def abrir_doc_code(self, event):
+        print("Abrir la documentación del código")
+        filename = "docs/Manual_Usuario.pdf"
+        webbrowser.open(filename, new = 2)
+
+    def info_soft_function(self, event):
+        print("Información del sistema")
+        dlg = QMessageBox()
+        dlg.setWindowTitle("Información Del Sistema")
+        dlg.setIcon(QMessageBox.Warning)
+        dlg.setText(
+            "OpenAI = 0.26.5"
+            "\nPython = 3.10.6"
+            "\nSelenium = 4.8.0"
+            "\nPyQt5 = 5.15.9"
+            "\nQT Designer = 5.15.3"
+            "\nCrhome = 110.0.5481.77"
+            )
+        dlg.setStandardButtons(QMessageBox.Ok)
+        button = dlg.exec()
+
+
     def selenium_function(self):
         print("Configuracion de selenium")
         self.pos_ventana = self.ui_config.pos()

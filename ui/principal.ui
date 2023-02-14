@@ -163,25 +163,30 @@ QPushButton:disabled {
      <rect>
       <x>70</x>
       <y>60</y>
-      <width>401</width>
+      <width>411</width>
       <height>101</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>60</pointsize>
+      <family>Tlwg Typo</family>
+      <pointsize>70</pointsize>
       <weight>75</weight>
+      <italic>true</italic>
       <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
      </font>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(67, 205, 102);</string>
+     <string notr="true">background-color: transparent;
+color: rgb(16, 57, 4);</string>
     </property>
     <property name="text">
-     <string>CHATBOT</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;CHATBOT&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -189,21 +194,23 @@ QPushButton:disabled {
      <rect>
       <x>70</x>
       <y>170</y>
-      <width>311</width>
+      <width>331</width>
       <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>19</pointsize>
+      <family>Tlwg Typo</family>
+      <pointsize>23</pointsize>
       <weight>75</weight>
-      <italic>false</italic>
+      <italic>true</italic>
       <bold>true</bold>
       <underline>false</underline>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(67, 205, 102);</string>
+     <string notr="true">background-color: transparent;
+color: rgb(16, 57, 4);</string>
     </property>
     <property name="text">
      <string> WHATSAPP &amp; GPT-3</string>
@@ -377,6 +384,30 @@ QPushButton:disabled {
      <string>-</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>-1</y>
+      <width>800</width>
+      <height>601</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../image/background.png</pixmap>
+    </property>
+   </widget>
+   <zorder>label_2</zorder>
+   <zorder>configBtn</zorder>
+   <zorder>iniciarBtn</zorder>
+   <zorder>label</zorder>
+   <zorder>salirBtn</zorder>
+   <zorder>pararBtn</zorder>
+   <zorder>minimizarBtn</zorder>
+   <zorder>tituloLabel</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -388,7 +419,6 @@ QPushButton:disabled {
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

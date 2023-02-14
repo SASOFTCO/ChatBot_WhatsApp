@@ -111,7 +111,7 @@ class IniciarWhatsapp:
         
 
     def obtener_respuesta(self, mensaje):
-        mensaje+= '. Responda en pocas palabras y en un único parrágrafo.'
+        mensaje+= '. Responda en pocas palabras y en un único párrafo.'
         #mensaje+= '. Sea claro, conciso, directo y responda en un solo párrafo.'
         try:
             completions = openai.Completion.create(
