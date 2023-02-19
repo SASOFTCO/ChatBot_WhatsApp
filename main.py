@@ -52,9 +52,31 @@ class Iniciar_UI(QMainWindow):
 
 		#Iniciar con el botón "PARAR" deshabilitado
 		self.btn_parar.setEnabled(False)
+		
+	#Función que lanza el hilo que inicia el CHATBOT
+	def iniciar_function(self):
+		print("Iniciando")
+		self.btn_iniciar.setEnabled(False)
+		self.btn_parar.setEnabled(True)
+		# Lanzando hilo Chrome - WhatsApp Web
+		self.thread = Whatsapp_Web_Thread()
+		self.thread.finished.connect(self.handle_finished)
+		self.thread.start()
 
+	#Función que detiene el hilo que está ejecutando el CHATBOT
+	def parar_hilo_function(self):
+		print("Finalizar hilo")
+		self.thread.buscar_msjes = False
 
-	#Función Salir
+	#Función para ir a la ventana de configuración
+	def config_function(self):
+		print("Configuración")
+		self.pos_ventana = self.ui_ppal.pos()
+		self.ui_ppal.hide()
+		self.ui_config.move(self.pos_ventana)
+		self.ui_config.show()
+
+	#Función que finaliza la aplicación - Salir
 	def salir_function(self):
 		self.btn_salir.setEnabled(False)
 		try:
@@ -72,27 +94,6 @@ class Iniciar_UI(QMainWindow):
 		print("Tarea terminada")
 		self.btn_parar.setEnabled(False)
 		self.btn_iniciar.setEnabled(True)
-	
-	#Funciones UI Principal
-	def iniciar_function(self):
-		print("Iniciando")
-		self.btn_iniciar.setEnabled(False)
-		self.btn_parar.setEnabled(True)
-		# Lanzando hilo Chrome - WhatsApp Web
-		self.thread = Whatsapp_Web_Thread()
-		self.thread.finished.connect(self.handle_finished)
-		self.thread.start()
-
-	def parar_hilo_function(self):
-		print("Finalizar hilo")
-		self.thread.buscar_msjes = False
-
-	def config_function(self):
-		print("Configuración")
-		self.pos_ventana = self.ui_ppal.pos()
-		self.ui_ppal.hide()
-		self.ui_config.move(self.pos_ventana)
-		self.ui_config.show()
 
 
 if __name__ == '__main__':

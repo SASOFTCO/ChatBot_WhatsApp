@@ -106,3 +106,19 @@ class Configurar_UI(QMainWindow):
 
     def salir_function(self):
         self.ui_ppal.salir_function()
+
+
+    # Funciones para leer y guardar las configuraciones en el txt
+    def leer_config(self):
+        config_dict = dict()
+        with open('config/config.txt', 'r') as file:
+            for linea in file:
+                linea = linea.strip()
+                linea_split = linea.split('<e>')
+                config_dict[linea_split[0]] = linea_split[1]
+        return config_dict
+
+    def guardar_config(self, config_dict):
+        with open("config/config.txt", "w") as archivo:
+            for clave, valor in config_dict.items():
+                archivo.write(clave + "<e>" + valor + "\n")

@@ -43,12 +43,7 @@ class Config_Chrome_UI(QMainWindow):
 
     #Funciones UI Configuración - Chrome
     def set_chrome_config(self):
-        config_dict = dict()
-        with open('config/config.txt', 'r') as file:
-            for linea in file:
-                linea = linea.strip()
-                linea_split = linea.split('<e>')
-                config_dict[linea_split[0]] = linea_split[1]
+        config_dict = self.ui_config.leer_config()
 
         self.in_linux.setText(config_dict[self.linux_chrome])
         self.in_mac.setText(config_dict[self.mac_chrome])
@@ -70,20 +65,13 @@ class Config_Chrome_UI(QMainWindow):
 
         if button == QMessageBox.Ok:
             print("Guardando Configuración")
-            etiquetas_dict = dict()
-            with open('config/config.txt', 'r') as file:
-                for linea in file:
-                    linea = linea.strip()
-                    linea_split = linea.split('<e>')
-                    etiquetas_dict[linea_split[0]] = linea_split[1]
+            etiquetas_dict = self.ui_config.leer_config()
 
             etiquetas_dict[self.linux_chrome]=self.in_linux.text()
             etiquetas_dict[self.mac_chrome]=self.in_mac.text()
             etiquetas_dict[self.windows_chrome]=self.in_windows.text()
 
-            with open("config/config.txt", "w") as archivo:
-                for clave, valor in etiquetas_dict.items():
-                    archivo.write(clave + "<e>" + valor + "\n")
+            self.ui_config.guardar_config(etiquetas_dict)
 
     def volver_function(self):
         print("Volver")

@@ -48,12 +48,7 @@ class Config_Selenium_UI(QMainWindow):
 
     #Funciones UI Configuración - Selenium
     def set_selenium_config(self):
-        config_dict = dict()
-        with open('config/config.txt', 'r') as file:
-            for linea in file:
-                linea = linea.strip()
-                linea_split = linea.split('<e>')
-                config_dict[linea_split[0]] = linea_split[1]
+        config_dict = self.ui_config.leer_config()
 
         self.lb_className1.setText(config_dict[self.class_name1])
         self.lb_className2.setText(config_dict[self.class_name2])
@@ -76,21 +71,14 @@ class Config_Selenium_UI(QMainWindow):
 
         if button == QMessageBox.Ok:
             print("Guardando Configuración")
-            etiquetas_dict = dict()
-            with open('config/config.txt', 'r') as file:
-                for linea in file:
-                    linea = linea.strip()
-                    linea_split = linea.split('<e>')
-                    etiquetas_dict[linea_split[0]] = linea_split[1]
+            etiquetas_dict = self.ui_config.leer_config()
 
             etiquetas_dict[self.class_name1]=self.lb_className1.text()
             etiquetas_dict[self.class_name2]=self.lb_className2.text()
             etiquetas_dict[self.xpath1]=self.lb_xPath1.text()
             etiquetas_dict[self.xpath2]=self.lb_xPath2.text()
 
-            with open("config/config.txt", "w") as archivo:
-                for clave, valor in etiquetas_dict.items():
-                    archivo.write(clave + "<e>" + valor + "\n")
+            self.ui_config.guardar_config(etiquetas_dict)
 
     def volver_function(self):
         print("Volver")

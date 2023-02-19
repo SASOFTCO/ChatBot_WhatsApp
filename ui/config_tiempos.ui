@@ -114,7 +114,7 @@ border-radius: 21px;</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>23</pointsize>
+      <pointsize>14</pointsize>
       <weight>75</weight>
       <italic>false</italic>
       <bold>true</bold>
@@ -705,7 +705,7 @@ QPushButton:disabled {
     </property>
     <property name="font">
      <font>
-      <pointsize>16</pointsize>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <italic>false</italic>
       <bold>true</bold>

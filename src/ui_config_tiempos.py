@@ -43,12 +43,7 @@ class Config_Tiempos_UI(QMainWindow):
 
     #Funciones UI Configuración - Tiempos
     def set_tiempos_config(self):
-        config_dict = dict()
-        with open('config/config.txt', 'r') as file:
-            for linea in file:
-                linea = linea.strip()
-                linea_split = linea.split('<e>')
-                config_dict[linea_split[0]] = linea_split[1]
+        config_dict = self.ui_config.leer_config()
 
         self.in_rta_gpt.setValue(int(config_dict[self.te_rta_gpt]))
         self.in_init_whats.setValue(int(config_dict[self.te_init_whats]))
@@ -70,20 +65,13 @@ class Config_Tiempos_UI(QMainWindow):
 
         if button == QMessageBox.Ok:
             print("Guardando Configuración")
-            etiquetas_dict = dict()
-            with open('config/config.txt', 'r') as file:
-                for linea in file:
-                    linea = linea.strip()
-                    linea_split = linea.split('<e>')
-                    etiquetas_dict[linea_split[0]] = linea_split[1]
+            etiquetas_dict = self.ui_config.leer_config()
 
             etiquetas_dict[self.te_rta_gpt]=self.in_rta_gpt.text()
             etiquetas_dict[self.te_init_whats]=self.in_init_whats.text()
             etiquetas_dict[self.te_msg]=self.in_msg.text()
 
-            with open("config/config.txt", "w") as archivo:
-                for clave, valor in etiquetas_dict.items():
-                    archivo.write(clave + "<e>" + valor + "\n")
+            self.ui_config.guardar_config(etiquetas_dict)
 
     def volver_function(self):
         print("Volver")

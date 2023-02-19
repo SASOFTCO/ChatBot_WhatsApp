@@ -179,9 +179,6 @@ QPushButton:pressed {
       <bold>true</bold>
      </font>
     </property>
-    <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; color:#ffffff;&quot;&gt;C:/Users/&amp;lt;USUARIO&amp;gt;/AppData/Local/Google/Chrome/User Data/Default&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
     <property name="styleSheet">
      <string notr="true">QLabel{
 	background-color: rgb(67, 205, 102);
@@ -260,9 +257,6 @@ QPushButton:pressed {
       <bold>true</bold>
      </font>
     </property>
-    <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; color:#ffffff;&quot;&gt;C:/Users/&amp;lt;USUARIO&amp;gt;/AppData/Local/Google/Chrome/User Data/Default&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
     <property name="styleSheet">
      <string notr="true">QLabel{
 	background-color: rgb(67, 205, 102);
@@ -302,9 +296,6 @@ QPushButton:pressed {
       <weight>75</weight>
       <bold>true</bold>
      </font>
-    </property>
-    <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; color:#ffffff;&quot;&gt;/Users/&amp;lt;USUARIO&amp;gt;/Library/Caches/Google/Chrome/&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">QLabel{
@@ -592,9 +583,9 @@ QPushButton:disabled {
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>140</y>
+      <y>130</y>
       <width>601</width>
-      <height>71</height>
+      <height>81</height>
      </rect>
     </property>
     <property name="font">

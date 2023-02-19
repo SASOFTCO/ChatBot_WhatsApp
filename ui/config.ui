@@ -85,7 +85,7 @@ border-radius: 21px;</string>
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>290</y>
+      <y>240</y>
       <width>541</width>
       <height>51</height>
      </rect>
@@ -152,7 +152,7 @@ QPushButton:disabled {
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>380</y>
+      <y>330</y>
       <width>541</width>
       <height>51</height>
      </rect>
@@ -209,7 +209,7 @@ QPushButton:disabled {
 	}</string>
     </property>
     <property name="text">
-     <string>Local browser cache path</string>
+     <string>Local Browser Caché Path</string>
     </property>
    </widget>
    <widget class="QLabel" name="titleLabel">
@@ -396,7 +396,7 @@ QPushButton:disabled {
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>470</y>
+      <y>420</y>
       <width>541</width>
       <height>51</height>
      </rect>
@@ -453,14 +453,14 @@ QPushButton:disabled {
 	}</string>
     </property>
     <property name="text">
-     <string>Tiempos de espera</string>
+     <string>Tiempos Máximos De Espera</string>
     </property>
    </widget>
    <widget class="QLabel" name="infoSoft">
     <property name="geometry">
      <rect>
       <x>470</x>
-      <y>210</y>
+      <y>510</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -482,7 +482,7 @@ QPushButton:disabled {
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>210</y>
+      <y>510</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -494,7 +494,7 @@ QPushButton:disabled {
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../image/code_guide3.png</pixmap>
+     <pixmap>../image/code_guide.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -504,7 +504,7 @@ QPushButton:disabled {
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>210</y>
+      <y>510</y>
       <width>51</width>
       <height>51</height>
      </rect>
