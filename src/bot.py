@@ -42,7 +42,12 @@ class IniciarWhatsapp:
         self.pantalla_inicio = False
 
         #Leer e iniciar las etiquetas de whatsapp web guardadas en el txt
-        config_dict = self.ui_config.leer_config()
+        config_dict = dict()
+        with open('config/config.txt', 'r') as file:
+            for linea in file:
+                linea = linea.strip()
+                linea_split = linea.split('<e>')
+                config_dict[linea_split[0]] = linea_split[1]
 
         self.msjes_nuevos_class_name = config_dict[self.class_name1]
         self.conversacion_class_name = config_dict[self.class_name2]
