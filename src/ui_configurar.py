@@ -53,7 +53,7 @@ class Configurar_UI(QMainWindow):
 
     def abrir_doc_code(self, event):
         print("Abrir la documentación del código")
-        filename = "docs/Manual_Usuario.pdf"
+        filename = "docs/Manual_Codigo_Fuente.pdf"
         webbrowser.open(filename, new = 2)
 
     def info_soft_function(self, event):
